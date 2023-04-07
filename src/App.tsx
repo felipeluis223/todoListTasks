@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import TodoTask from "./components/TodoTask/TodoTask";
-import './styles/styles.css'
 import { ITask } from './interfaces';
+import './styles/styles.css'
+import TodoTask from "./components/TodoTask/TodoTask";
+
 
 function App() {
 	const [ todoList, setTodoList ] = useState<ITask[]>([]);
@@ -9,18 +10,23 @@ function App() {
 
 	// Add task with id and name:
 	const addTask = ():void=>{
-		// Generate random id:
-		const idRandom = (num:number) => Math.floor(Math.random() * num);
+		if(task === ""){
+			window.alert("Digite alguma task");
+		}else{
+			// Generate random id:
+			const idRandom = (num:number) => Math.floor(Math.random() * num);
 
-		const newTask = {
-			id: idRandom(100),
-			nameTask: task
+			const newTask = {
+				id: idRandom(100),
+				nameTask: task
+			}
+
+			// Add task in array:
+			setTodoList([...todoList, newTask]);
+
+			window.alert("Task cadastrada com sucesso!");
 		}
-
-		// Add task in array:
-		setTodoList([...todoList, newTask]);
-
-	}
+	} 
 
 	const deleteTask = (deleteTaskId: number):void=>{
 		setTodoList(todoList.filter((taskName)=> taskName.id !== deleteTaskId))
@@ -28,7 +34,6 @@ function App() {
 
 	return (
 		<div className="App">
-
 			<header>
 
 				<h2>Lists</h2>
