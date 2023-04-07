@@ -23,8 +23,6 @@ function App() {
 
 			// Add task in array:
 			setTodoList([...todoList, newTask]);
-
-			window.alert("Task cadastrada com sucesso!");
 		}
 	} 
 
