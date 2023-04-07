@@ -1,11 +1,7 @@
 import { useState } from 'react';
 import TodoTask from "./components/TodoTask/TodoTask";
 import './styles/styles.css'
-
-interface ITask{
-	id: number,
-	nameTask: string,
-}
+import { ITask } from './interfaces';
 
 function App() {
 	const [ todoList, setTodoList ] = useState<ITask[]>([]);
@@ -47,7 +43,11 @@ function App() {
 			
 			<div className="line"></div>
 
-			<TodoTask />
+			{
+				todoList.map((task, index)=>(
+					<TodoTask task={task} key={index}  />
+				))
+			}
 			
 		</div>
 	);
