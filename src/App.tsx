@@ -8,7 +8,7 @@ function App() {
 	const [ task, setTask ] = useState<string>("");
 
 	// Add task with id and name:
-	const addTask = ()=>{
+	const addTask = ():void=>{
 		// Generate random id:
 		const idRandom = (num:number) => Math.floor(Math.random() * num);
 
@@ -20,6 +20,10 @@ function App() {
 		// Add task in array:
 		setTodoList([...todoList, newTask]);
 
+	}
+
+	const deleteTask = (deleteTaskId: number):void=>{
+		setTodoList(todoList.filter((taskName)=> taskName.id !== deleteTaskId))
 	}
 
 	return (
@@ -45,7 +49,7 @@ function App() {
 
 			{
 				todoList.map((task, index)=>(
-					<TodoTask task={task} key={index}  />
+					<TodoTask task={task} key={index} deleteTask={deleteTask} />
 				))
 			}
 			
